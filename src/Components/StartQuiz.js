@@ -96,7 +96,7 @@ export default function StartQuiz() {
 
         <br />
 
-        {question.length > 0  && <button disabled={Object.keys(selectedAnswers).length < question.length ? true : false}>Submit</button >}     
+        {question.length > 0  && <button disabled={Object.keys(selectedAnswers).length < question.length ? true : false}>Submit</button>}     
     </>)
     
 }
