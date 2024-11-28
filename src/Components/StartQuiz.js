@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import CategoryDifficultyDropdowns from '../Helpers/CategoryDifficultyDropdowns'; 
+
 export default function StartQuiz() {
     const [category, setCategory] = useState([]);
     const [question, setQuestion] = useState([]);
@@ -12,8 +14,7 @@ export default function StartQuiz() {
 
     useEffect(() => {
         getCategory()
-        console.log("selected Answers", selectedAnswers)
-    }, [selectedAnswers]);
+    }, []);
 
     async function getCategory() {
         try {
@@ -59,7 +60,8 @@ export default function StartQuiz() {
 
     return (<>
         <h1>Quiz Maker</h1>
-        <select id="categorySelect" onChange={(event) => setSelectedCategory(event.target.value)} value={selectedCategory}>
+        {/* seperate the drop */}
+        {/* <select id="categorySelect" onChange={(event) => setSelectedCategory(event.target.value)} value={selectedCategory}>
             <option value="">Select Category</option>
             {category && category.map(c => {
                 return (<option key={c.id} value={c.id}>{c.name}</option>)
@@ -70,7 +72,9 @@ export default function StartQuiz() {
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
-        </select>
+        </select> */}
+        <CategoryDifficultyDropdowns category={category || []} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} selectDifficulty={selectDifficulty} setselectDifficulty={setselectDifficulty} />
+    
         <button id="createBtn" onClick={handleCreateQuiz}>Create</button>
 
         {question && question.length > 0 ?
@@ -96,7 +100,11 @@ export default function StartQuiz() {
 
         <br />
 
-        {question.length > 0  && <button disabled={Object.keys(selectedAnswers).length < question.length ? true : false}>Submit</button>}     
+        {
+            Object.keys(selectedAnswers).length >= question.length
+            && question.length < 0
+            && <button type="submit">Submit</button>
+        }  
     </>)
     
 }
