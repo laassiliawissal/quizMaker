@@ -10,10 +10,12 @@ export default function StartQuiz() {
     const [selectDifficulty, setselectDifficulty] = useState("");
 
     const [selectedAnswers, setSelectedAnswers] = useState({});
+
+    const [showSubmit, setShowSubmit] = useState(false);
     
 
     useEffect(() => {
-        getCategory()
+        getCategory();
     }, []);
 
     async function getCategory() {
@@ -54,25 +56,17 @@ export default function StartQuiz() {
 
     function handleSelectedAnswer(index, answer) {
         setSelectedAnswers(prev => {
-            return { ...prev, [index]: answer }
+            const updatedAnswers = { ...prev, [index]: answer }
+            if (Object.keys(updatedAnswers).length === question.length) {
+                setShowSubmit(true); // Show submit button when all questions are answered
+            }
+            return updatedAnswers
         })
+
     }
 
     return (<>
         <h1>Quiz Maker</h1>
-        {/* seperate the drop */}
-        {/* <select id="categorySelect" onChange={(event) => setSelectedCategory(event.target.value)} value={selectedCategory}>
-            <option value="">Select Category</option>
-            {category && category.map(c => {
-                return (<option key={c.id} value={c.id}>{c.name}</option>)
-            })}
-        </select>
-        <select id="difficultySelect" onChange={(event) => { setselectDifficulty(event.target.value) }} value={selectDifficulty}>
-            <option value="">Select Difficulty</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select> */}
         <CategoryDifficultyDropdowns category={category || []} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} selectDifficulty={selectDifficulty} setselectDifficulty={setselectDifficulty} />
     
         <button id="createBtn" onClick={handleCreateQuiz}>Create</button>
@@ -101,9 +95,7 @@ export default function StartQuiz() {
         <br />
 
         {
-            Object.keys(selectedAnswers).length >= question.length
-            && question.length < 0
-            && <button type="submit">Submit</button>
+          showSubmit && (<button type="submit">Submit</button>)
         }  
     </>)
     

@@ -1,21 +1,5 @@
+export default function CategoryDifficultyDropdowns({category, selectedCategory, setSelectedCategory, selectDifficulty, setselectDifficulty}) {
 
-import { useEffect } from "react";
-
-export default function CategoryDifficultyDropdowns({category, setCategory, selectedCategory, setSelectedCategory, selectDifficulty, setselectDifficulty}) {
-    useEffect(() => {
-        getCategory()
-
-    });
-
-    async function getCategory() {
-        try {
-            const data = await fetch("https://opentdb.com/api_category.php")
-            const result = await data.json()
-            setCategory(result.trivia_categories || [])
-        } catch (error) {
-            console.log(`ERROR ${error}`)
-        }
-    }
     return (<>
         <select id="categorySelect" onChange={(event) => setSelectedCategory(event.target.value)} value={selectedCategory}>
             <option value="">Select Category</option>
