@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import CategoryDifficultyDropdowns from '../Helpers/CategoryDifficultyDropdowns'; 
+import DisplayQuiz from "./DisplayQuiz";
 
 export default function StartQuiz() {
     const [category, setCategory] = useState([]);
@@ -68,35 +69,12 @@ export default function StartQuiz() {
     return (<>
         <h1>Quiz Maker</h1>
         <CategoryDifficultyDropdowns category={category || []} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} selectDifficulty={selectDifficulty} setselectDifficulty={setselectDifficulty} />
-    
         <button id="createBtn" onClick={handleCreateQuiz}>Create</button>
 
-        {question && question.length > 0 ?
-            
-            question.map((q, qIndex) => {
-                return (
-                    <div key={qIndex}>
-                        <p>{q.decodedQuestion}</p>
-                        {q.shuffledAnswers.map((answer, index) => {
-                            const isSelected = selectedAnswers[qIndex] === answer
-
-                            return <button
-                                key={index}
-                                style={{ backgroundColor: isSelected ? "blue" : "" }}
-                                onClick={() => handleSelectedAnswer(qIndex, answer)}
-                            >{answer}
-                            </button>
-                        })}
-                    </div>
-                )
-            })
-            : <p>No questions available.</p>}
-
-        <br />
-
-        {
-          showSubmit && (<button type="submit">Submit</button>)
-        }  
+        <DisplayQuiz question={question} selectedAnswers={selectedAnswers} handleSelectedAnswer={handleSelectedAnswer}/>
+        
+        <br/>
+        {showSubmit && (<button type="submit">Submit</button>)}  
     </>)
     
 }
