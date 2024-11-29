@@ -1,4 +1,8 @@
-export default function DisplayQuiz({question, selectedAnswers, handleSelectedAnswer}) {
+import { useContext } from "react"
+import { AppContext } from "../App"
+
+export default function DisplayQuiz({ handleSelectedAnswer }) {
+    const { question, selectedAnswers } = useContext(AppContext);
     return (<>
         {question && question.length > 0 ?
             

@@ -24,7 +24,8 @@ export default function StartQuiz() {
             try {
             const data = await fetch("https://opentdb.com/api_category.php")
             const result = await data.json()
-            setCategory(result.trivia_categories || [])
+                setCategory(result.trivia_categories || [])
+                console.log(category)
             } catch (error) {
             console.log(`ERROR ${error}`)
             }
@@ -44,7 +45,7 @@ export default function StartQuiz() {
         }
         
         
-    }, [startOver, setselectDifficulty, setSelectedCategory, setSelectedAnswers,setQuestion,setCategory, setShowSubmit, setScore, setStartOver]); // remove the dependencies array, useEffect will run on every render, keep it empty it will run once on component mount, if has dependences will run on every change of those dependencies
+    }, [category, startOver, setselectDifficulty, setSelectedCategory, setSelectedAnswers,setQuestion,setCategory, setShowSubmit, setScore, setStartOver]); // remove the dependencies array, useEffect will run on every render, keep it empty it will run once on component mount, if has dependences will run on every change of those dependencies
 
     
 
@@ -98,7 +99,7 @@ export default function StartQuiz() {
         
         
       
-        <CategoryDifficultyDropdowns category={category || []} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} selectDifficulty={selectDifficulty} setselectDifficulty={setselectDifficulty} />
+        <CategoryDifficultyDropdowns/>
         <button id="createBtn" onClick={handleCreateQuiz}>Create</button>
 
         <DisplayQuiz question={question} selectedAnswers={selectedAnswers} handleSelectedAnswer={handleSelectedAnswer}/>
