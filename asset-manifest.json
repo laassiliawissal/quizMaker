@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/quizMaker/static/css/main.f855e6bc.css",
+    "main.js": "/quizMaker/static/js/main.3c381082.js",
+    "index.html": "/quizMaker/index.html",
+    "main.f855e6bc.css.map": "/quizMaker/static/css/main.f855e6bc.css.map",
+    "main.3c381082.js.map": "/quizMaker/static/js/main.3c381082.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.3c381082.js"
+  ]
+}
