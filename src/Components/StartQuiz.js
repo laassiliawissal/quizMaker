@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import CategoryDifficultyDropdowns from '../Helpers/CategoryDifficultyDropdowns'; 
 import DisplayQuiz from "./DisplayQuiz";
-// import EndQuiz from "./EndQuiz";
+
 
 export default function StartQuiz() {
     //useContext
@@ -39,7 +39,6 @@ export default function StartQuiz() {
             setQuestion([])
             setCategory([])
             setShowSubmit(false)
-            // setShowResult(false)
             setScore(0)
             setStartOver(false)
         }
@@ -93,21 +92,7 @@ export default function StartQuiz() {
     }
 
     function handleSubmit() {
-        // setShowResult(true)
-        //navigate the endquiz with the current state
-        // navigate("/endquiz", {
-        //     state: {
-
-        //         // setStartOver,
-        //         // setShowResult,
-        //         score,
-        //         question,
-        //         selectedAnswers
-
-        //     }
-        // })
-
-        
+   
     }
     return (<>
         
@@ -123,13 +108,6 @@ export default function StartQuiz() {
         <Link to="/endquiz">
             {showSubmit && (<button type="submit" onClick={handleSubmit}>Submit</button>)}
         </Link>
-        
-       
-        
-        {/* {showResult && (<EndQuiz setStartOver={setStartOver} setShowResult={setShowResult} score={score} question={question} selectedAnswers={selectedAnswers}/>)} */}
     </>)
     
 }
-
-// track the score
-
