@@ -1,6 +1,6 @@
 import './App.css';
 import {createContext, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 
 import StartQuiz from './Components/StartQuiz';
 import EndQuiz from './Components/EndQuiz';
