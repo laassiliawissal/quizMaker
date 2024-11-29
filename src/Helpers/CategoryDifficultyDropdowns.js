@@ -1,5 +1,8 @@
-export default function CategoryDifficultyDropdowns({category, selectedCategory, setSelectedCategory, selectDifficulty, setselectDifficulty}) {
+import { useContext } from 'react';
+import { AppContext } from '../App';
 
+export default function CategoryDifficultyDropdowns() {
+    const { category, selectedCategory, setSelectedCategory, selectDifficulty, setselectDifficulty } = useContext(AppContext);
     return (<>
         <select id="categorySelect" onChange={(event) => setSelectedCategory(event.target.value)} value={selectedCategory}>
             <option value="">Select Category</option>
